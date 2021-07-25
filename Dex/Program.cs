@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace Dex
 {
@@ -6,11 +7,27 @@ namespace Dex
     {
         static void Main(string[] args)
         {
-            Animal dog = new Dog(15, 150);
-            Console.WriteLine("Собака говорит:");
-            dog.Voice();
+            var stopwatch = new Stopwatch();
+
+            stopwatch.Start();
+
+            int i = 123;
+            object o = i; // упаковка            
+
+            stopwatch.Stop();
+
+            Console.WriteLine($"Потрачено времени на упаковку - {stopwatch.Elapsed}");
+
+            stopwatch.Start();
+
+            i = (int)o; // распаковка
+
+            stopwatch.Stop();
+
+            Console.WriteLine($"Потрачено времени на распаковку - {stopwatch.Elapsed}");
 
             Console.ReadLine();
         }
+
     }
 }
