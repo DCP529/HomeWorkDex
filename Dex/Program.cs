@@ -10,6 +10,12 @@ namespace Dex
             Console.WriteLine("Собака говорит:");
             dog.Voice();
 
+            var cat = new Cat();
+            Console.WriteLine("Кошка говорит:");
+            cat.Voice();
+
+            //cat и dog - наследники Animal, но Voice у них работает по разному
+
             Console.ReadLine();
         }
     }

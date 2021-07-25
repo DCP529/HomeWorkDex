@@ -4,15 +4,11 @@ using System.Text;
 
 namespace Dex
 {
-    class Dog : Animal
+    class Cat : Animal
     {
-        public Dog(double weight, double height) : base( weight, height) {}
-
         public override void Voice()
         {
-            Console.WriteLine("Гав гав гав"); 
+            Console.WriteLine("Мяу мяу мяу");
         }
-
-
     }
 }
