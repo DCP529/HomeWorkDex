@@ -7,24 +7,27 @@ namespace Dex
     {
         static void Main(string[] args)
         {
-            var stopwatch = new Stopwatch();
+            var stopwatch1 = new Stopwatch();
+            var stopwatch2 = new Stopwatch();
 
-            stopwatch.Start();
+            int j = 1;
+            object o = j;
+            for (int i = 0; i < 100; i++)
+            {
+                stopwatch1.Start();
+                j = i;
+                o = j;// упаковка       
+                stopwatch1.Stop();
 
-            int i = 123;
-            object o = i; // упаковка            
+                stopwatch2.Start();
+                j = (int)o; // распаковка
+                stopwatch2.Stop();
+            }
 
-            stopwatch.Stop();
 
-            Console.WriteLine($"Потрачено времени на упаковку - {stopwatch.Elapsed}");
+            Console.WriteLine($"Среднее время отраченое на упаковку - {stopwatch1.Elapsed / 100}");
 
-            stopwatch.Restart();
-
-            i = (int)o; // распаковка
-
-            stopwatch.Stop();
-
-            Console.WriteLine($"Потрачено времени на распаковку - {stopwatch.Elapsed}");
+            Console.WriteLine($"Среднее время отраченое на распаковку - {stopwatch2.Elapsed / 100}");
 
             Console.ReadLine();
         }
