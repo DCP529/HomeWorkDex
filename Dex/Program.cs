@@ -6,15 +6,10 @@ namespace Dex
     {
         static void Main(string[] args)
         {
-            Animal dog = new Dog(15, 150);
-            Console.WriteLine("Собака говорит:");
-            dog.Voice();
-
-            var cat = new Cat();
-            Console.WriteLine("Кошка говорит:");
-            cat.Voice();
-
-            //cat и dog - наследники Animal, но Voice у них работает по разному
+            var person1 = new Person("Колесник Тимофей Анатольевич", DateTime.Now, "Днестровск", 1);
+            var person2 = new Person("Антонов Юрий Михайлович", DateTime.Now, "Днестровск", 1);
+            bool result = person1.Equals(person2);
+            int getHashCode = person1.GetHashCode();
 
             Console.ReadLine();
         }
