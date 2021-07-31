@@ -10,6 +10,7 @@ namespace Dex
         public int PassportId { get; set; }
         public decimal AccountAmount { get; set; }
 
+        public Client() { }
         public Client(string fio, int passportId, decimal accountAmount)
         {
             Fio = fio;
