@@ -29,6 +29,7 @@ namespace Dex
             var sum = listClient.SumAmount();
             Console.WriteLine($"\nСумма денег всех клиентов составляет: {sum}");
 
+
             Console.ReadLine();
         }
     }
