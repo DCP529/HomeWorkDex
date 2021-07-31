@@ -8,13 +8,14 @@ namespace Dex
     {
         public string Fio { get; set; }
         public int PassportId { get; set; }
-        public decimal AccountAmount { get; set; }
+        public List<Account> AccountList { get; set; } 
 
-        public Client(string fio, int passportId, decimal accountAmount)
+        public Client() { }
+        public Client(string fio, int passportId, List<Account> accountAmount)
         {
             Fio = fio;
             PassportId = passportId;
-            AccountAmount = accountAmount;
+            AccountList = accountAmount;
         }
 
     }

@@ -1,34 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Dex
 {
     class Program
     {
-        public static List<Client> listClient = new List<Client>();
         static void Main(string[] args)
         {
-            var andrey1 = new Client("Котельцев Андрей Муратович", 1, 15_000);
-            var ivan = new Client("Костюшев Иван Павлович", 2, 1_000);
-            var vladimir = new Client("Рыбников Юрий Антонович", 3, 9_999);
+            var figures = new List<Figure>();
+            var dic = new Dictionary<Figure, Client>();
 
-            listClient.AddRange(new Client[] { ivan, andrey1, vladimir });
-            var client1 = listClient.SearchClient(2);
-            Console.WriteLine(client1.Fio + "\n");
-
-            var client2 = listClient.SearchMinValue(10_000);
-            foreach (var item in client2)
+            for (int i = 0; i < 100_000; i++)
             {
-                Console.WriteLine(item.Fio);
+                figures.Add(new Figure() { SideCount = i, SideLength = 1 });
+                dic.Add(figures[i], new Client());
             }
 
-            var client3 = listClient.SearchMin();
-            Console.WriteLine("\n" + client3.Fio);
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            var findList = figures.Find(list => list.SideCount == 10_000);
+            sw.Stop();
 
-            var sum = listClient.SumAmount();
-            Console.WriteLine($"\nСумма денег всех клиентов составляет: {sum}");
+            Console.WriteLine(sw.Elapsed);
 
+            sw.Restart();
+            var findDic = dic.Where(dic => dic.Key.SideCount == 10_000);
+            sw.Stop();
+
+            Console.WriteLine(sw.Elapsed);
+
+            var account1 = new Account(150, new Rub());
+            var account2 = new Account(100, new Ua());
+            var account3 = new Account(200, new Rub());
+
+
+            var client1= new Client("", 1, new List<Account>()
+            {
+                account1, account2, account3
+            });
+
+            var client2 = new Client("", 2, new List<Account>()
+            {
+                account1
+            });
+
+            var client3 = new Client("", 3, new List<Account>()
+            {
+                account2, account1
+            });                      
+
+            Dictionary<Client, Account> persons = new Dictionary<Client, Account>()
+            {
+                { client1, account1},
+                { client2, account2},
+                { client3, account3}
+            };
 
             Console.ReadLine();
         }
